@@ -45,9 +45,8 @@ const StorageCtrl = (function(){
         deleteItemFromStorage: id => {
             let items = JSON.parse(localStorage.getItem('items'));
             
-            items.forEach(item => {
+            items.forEach((item, index) => {
                 if(item.id === id){
-                    let index = items.indexOf(item);
                     items.splice(index, 1);
                 }
             });
@@ -56,15 +55,15 @@ const StorageCtrl = (function(){
         },
 
         // Updates an item in storage
-        updateItemInStorage: newItem => {
+        updateItemInStorage: updatedItem => {
             let items = JSON.parse(localStorage.getItem('items'));
 
             items.forEach(item => {
                 const itemID = item.id;
 
-                if(itemID === newItem.id) {
-                    item.name = newItem.name;
-                    item.calories = newItem.calories;
+                if(itemID === updatedItem.id) {
+                    item.name = updatedItem.name;
+                    item.calories = updatedItem.calories;
                 }
             });
 
